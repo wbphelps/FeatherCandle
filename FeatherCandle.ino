@@ -4,7 +4,7 @@
 // using the FeatherWing version
 Adafruit_IS31FL3731_Wing leds = Adafruit_IS31FL3731_Wing();
 
-//uint8_t        page = 0;    // Front/back buffer control
+uint8_t        page = 0;    // Front/back buffer control
 const uint8_t *ptr  = anim; // Current pointer into animation data
 const uint8_t  w    = 7;    // image width
 const uint8_t  h    = 15;   // image height
@@ -41,8 +41,8 @@ void loop() {
       img[y*w + x] = pgm_read_byte(ptr++);
   }
 
-//  page ^= 1; // Flip front/back buffer index
-//  leds.setFrame(page);
+  page ^= 1; // Flip front/back buffer index
+  leds.setFrame(page);
 
   int i = 0;
   for (uint8_t x=0; x<h; x++) {
@@ -51,5 +51,5 @@ void loop() {
     }
   }
 
-//  leds.displayFrame(page);
+  leds.displayFrame(page);
 }
